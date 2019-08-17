@@ -26,10 +26,13 @@ class Customer implements StakeHolders, Stake_Options{
 	}
 
 	@Override
-	public void showInitialMenuOptions(){};
+	public void showInitialMenuOptions(){
+		
+	}
 
 
-	public static void showDetailsAboutAll(int query){
+	@Override
+	public void showDetailsAboutAll(int query){
 		if (query == 1) System.out.println("Choose Customer");
 		else 
 			System.out.println("Customers");

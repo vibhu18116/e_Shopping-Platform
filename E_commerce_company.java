@@ -48,23 +48,27 @@ public class E_commerce_company implements StakeHolders{
 
 		decideNext(chosenOption);
 
+	}
 
+
+	public void showDetailsAboutAll(Stake_Options stakeholder, int query){
+		stakeholder.showDetailsAboutAll(query);
 	}
 
 	private void decideNext(int chosenOption){
 
 		switch (chosenOption){
 			case 1:
-				Merchant.showDetailsAboutAll(1);
+				showDetailsAboutAll(new Merchant(),1);
 				break;
 
 			case 2:
-				Customer.showDetailsAboutAll(1);
+				showDetailsAboutAll(new Customer(),1);
 				break;
 
 			case 3:
-				Merchant.showDetailsAboutAll(0);
-				Customer.showDetailsAboutAll(0);
+				showDetailsAboutAll(new Merchant(),0);
+				showDetailsAboutAll(new Customer(),0);
 				System.out.println("Choose using M/C id number.");
 				Character query = sc.next().charAt(0);
 				int id = sc.nextInt();
