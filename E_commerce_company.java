@@ -23,6 +23,7 @@ public class E_commerce_company implements StakeHolders{
 		Customer _borat = new Customer("borat", "9-Euler Tower, Sacred Soccers, GyanKhand, Meerut, UP");
 		Customer _aladeen = new Customer("aladeen", "D-93, Delphi Homes, Sector 6, Faridabad");
 		Merchant.comp = this;
+		Customer.comp = this;
 	}
 
 	void startApp(){

@@ -1,5 +1,4 @@
-import java.util.ArrayList;
-import java.util.Scanner;
+import java.util.*;
 
 class Customer implements StakeHolders, Stake_Options{
 
@@ -11,6 +10,10 @@ class Customer implements StakeHolders, Stake_Options{
 	private final String address;
 	private final int customer_id;
 	private int num_orders_placed = 0;
+	private int mainAccountBalance = 100;
+	private int rewardAccountBalance = 0;
+	private Queue <Item_Merchant> cart = new LinkedList<>();
+	static E_commerce_company comp;
 
 	Customer(){
 		name = "";
@@ -27,7 +30,48 @@ class Customer implements StakeHolders, Stake_Options{
 
 	@Override
 	public void showInitialMenuOptions(){
-		
+		System.out.println("Welcome " + this.name);
+		System.out.println("Customer Menu");
+		int count = 0;
+		System.out.println(++count + ") " + "Search item");
+		System.out.println(++count + ") " + "checkout cart");
+		System.out.println(++count + ") " + "Reward won");
+		System.out.println(++count + ") " + "print latest orders");
+		System.out.println(++count + ") " + "Exit");
+
+		int merchantChoice = sc.nextInt();
+		decideNext(merchantChoice);
+	}
+
+	private void decideNext(int chosenOption){
+
+		switch (chosenOption){
+			case 1:
+				
+				break;
+
+			case 2:
+				
+				break;
+
+			case 3:
+				
+				break;
+
+			case 4:
+				
+				break;
+
+			case 5:
+				comp.showInitialMenuOptions();
+				break;
+
+			default:
+				System.out.println("Invalid query");
+				this.showInitialMenuOptions();
+				break;
+		}
+
 	}
 
 
