@@ -35,7 +35,7 @@ class Merchant implements StakeHolders, Stake_Options{
 
 	void setContribution(float val){
 		this.contribution_to_company_account += val;
-		comp.contribute(val*2);
+		comp.contribute(val);
 		if (contribution_to_company_account>=100){
 			num_items_allowed+=1;
 			contribution_to_company_account -= 100;

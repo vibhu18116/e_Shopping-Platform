@@ -212,7 +212,7 @@ class Customer implements StakeHolders, Stake_Options{
 				rewardAccountBalance += 10;
 				mainAccountBalance += 10;
 			}
-
+			comp.contribute(transactionCharges);
 			System.out.println(toPurchase.item_details.getName() + " successfully bought");
 			return 0;
 		}
