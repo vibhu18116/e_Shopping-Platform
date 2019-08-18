@@ -29,6 +29,10 @@ class Merchant implements StakeHolders, Stake_Options{
 		allMerchants.add(this);
 	}
 
+	String getName(){
+		return name;
+	}
+
 	void setContribution(float val){
 		this.contribution_to_company_account += val;
 		if (contribution_to_company_account>=100){
@@ -180,7 +184,7 @@ class Merchant implements StakeHolders, Stake_Options{
 
 		int count = 0;
 		for (String cat: all_categories.keySet()){
-			System.out.println(++count + " " + cat);
+			System.out.println(++count + ") " + cat);
 			temp.put(count, cat);
 		}
 

@@ -77,4 +77,10 @@ class Item_Customer{
 		most_details = merchant;
 		this.quantity = quantity;
 	}
+
+	public String toString(){
+		return "Bought item " + this.most_details.item_details.getName() +
+			 " quantity: " + this.quantity + " for Rs " + this.boughtFor + 
+			 " from Merchant " + this.most_details.merchant.getName();
+	}
 }

@@ -58,11 +58,13 @@ class Customer implements StakeHolders, Stake_Options{
 				break;
 
 			case 3:
-				
+				printReward();
+				this.showInitialMenuOptions();
 				break;
 
 			case 4:
-				
+				listRecentOrders();
+				this.showInitialMenuOptions();
 				break;
 
 			case 5:
@@ -87,7 +89,7 @@ class Customer implements StakeHolders, Stake_Options{
 
 		int count = 0;
 		for (String cat: Merchant.all_categories.keySet()){
-			System.out.println(++count + " " + cat);
+			System.out.println(++count + ") " + cat);
 			temp.put(count, cat);
 		}
 
@@ -166,7 +168,7 @@ class Customer implements StakeHolders, Stake_Options{
 
 	}
 
-	private void buyItem(Item_Merchant toPurchase, int quantity){
+	private int buyItem(Item_Merchant toPurchase, int quantity){
 		int offer = toPurchase.offer;
 		float orderTotal = 0;
 
@@ -176,7 +178,7 @@ class Customer implements StakeHolders, Stake_Options{
 			if (quantity%2 != 0)
 				orderTotal += toPurchase.price;
 		}else if (offer == 2)
-			orderTotal = (float) toPurchase.price*quantity*((float) 0.25);
+			orderTotal = (float) toPurchase.price*quantity*((float) 0.75);
 		else
 			orderTotal = toPurchase.price*quantity;
 
@@ -186,10 +188,10 @@ class Customer implements StakeHolders, Stake_Options{
 
 		if (quantity > toPurchase.quantity){
 			System.out.println("Out of Stock");
-			return;
+			return -1;
 		}else if(orderTotal>mainAccountBalance){
 			System.out.println("Out of money");
-			return;
+			return -1;
 		}else{
 			toPurchase.quantity -= quantity;
 			
@@ -205,10 +207,51 @@ class Customer implements StakeHolders, Stake_Options{
 			}
 
 			System.out.println(toPurchase.item_details.getName() + " successfully bought");
-
+			return 0;
 		}
 	}
 
+	private void checkoutCart(){
+
+		while (cart.peek() != null){
+			Item_Customer item = cart.poll();
+
+			int success = this.buyItem(item.most_details, item.quantity);
+			if (success == -1)
+				break;
+		}
+	}
+
+	private void printReward(){
+
+		System.out.println("Won Rs " + rewardAccountBalance + " as reward.");
+	}
+
+	private void listRecentOrders(){
+
+		Stack <Item_Customer> temp = new Stack<>();
+
+		int count = 0;
+
+		while (count!=10){
+
+			if (last_10_purchases.empty())
+				break;
+
+			Item_Customer current = last_10_purchases.pop();
+
+			temp.push(current);
+			System.out.println(current);
+			count++;
+		}
+
+		if (!temp.empty()){
+			while (!temp.empty()){
+				last_10_purchases.push(temp.pop());
+			}
+		}
+
+	}
 
 	@Override
 	public void showDetailsAboutAll(int query){
