@@ -8,7 +8,7 @@ class Merchant implements StakeHolders, Stake_Options{
 	private int num_items_allowed = 10;
 	private int num_items_on_sale = 0;
 	private HashMap <Integer,Item_Merchant> all_items_withMerchant = new HashMap<Integer,Item_Merchant>();
-	private static HashMap<String, ArrayList<Item_Merchant>> all_categories = new HashMap<String, ArrayList<Item_Merchant>>();
+	static HashMap<String, ArrayList<Item_Merchant>> all_categories = new HashMap<String, ArrayList<Item_Merchant>>();
 	private static int id = 0;
 	private final String name;
 	private final String address;
@@ -27,6 +27,14 @@ class Merchant implements StakeHolders, Stake_Options{
 		this.address = address;
 		this.merchant_id = ++id;
 		allMerchants.add(this);
+	}
+
+	void setContribution(float val){
+		this.contribution_to_company_account += val;
+		if (contribution_to_company_account>=100){
+			num_items_allowed+=1;
+			contribution_to_company_account -= 100;
+		}
 	}
 
 	@Override
@@ -123,7 +131,7 @@ class Merchant implements StakeHolders, Stake_Options{
 		String category = sc.nextLine();
 		num_items_on_sale++;
 
-		Item_Merchant newItem = new Item_Merchant(i_name, price, quantity, category);
+		Item_Merchant newItem = new Item_Merchant(i_name, price, quantity, category, this);
 		all_items_withMerchant.put(newItem.item_details.getID(), newItem);
 		Item_Merchant added_item = newItem;
 

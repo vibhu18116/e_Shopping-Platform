@@ -30,12 +30,14 @@ class Item_Merchant{
 		float price;
 		int offer = 0;
 		int quantity;
+		final Merchant merchant;
 		//2 if 25% off; 1 if buy one, get one, 0 if none
 
-		Item_Merchant(String name, int price, int quantity, String category){
+		Item_Merchant(String name, int price, int quantity, String category, Merchant merchant){
 			item_details = new Item(name, category);
 			this.price = price;
 			this.quantity = quantity;
+			this.merchant = merchant;
 		}
 
 		String getOffer(){
@@ -57,4 +59,22 @@ class Item_Merchant{
 						+ this.item_details.getCategory());
 		}
 
+}
+
+class Item_Customer{
+
+	final Item_Merchant most_details;
+	float boughtFor;
+	final int quantity;
+
+	Item_Customer(Item_Merchant merchant, float boughtFor, int quantity){
+		most_details = merchant;
+		this.boughtFor = boughtFor;
+		this.quantity = quantity;
 	}
+
+	Item_Customer(Item_Merchant merchant, int quantity){
+		most_details = merchant;
+		this.quantity = quantity;
+	}
+}
