@@ -110,10 +110,25 @@ class Customer implements StakeHolders, Stake_Options{
 
 		System.out.println("Enter item code");
 		int itemCode = sc.nextInt();
+		boolean correct = false;
+		Item_Merchant toOrder = null;
 
-		if (itemCode <=0 || itemCode>chosen.size()){
+		if (itemCode <=0){
 			System.out.println("Invalid query");
 			return;
+		}else{
+			for (int i = 0; i<chosen.size(); i++){
+				if (chosen.get(i).item_details.getID() == itemCode){
+					correct = true;
+					toOrder = chosen.get(i);
+					break;
+				}
+			}
+
+			if (!correct){
+				System.out.println("Invalid query");
+				return;
+			}
 		}
 
 		System.out.println("Enter item quantity");
@@ -131,14 +146,6 @@ class Customer implements StakeHolders, Stake_Options{
 		System.out.println(++count_ + ") " + "Add item to cart");
 		System.out.println(++count_ + ") " + "Exit");
 		int option = sc.nextInt();
-
-		Item_Merchant toOrder = null;
-		for (int i = 0; i<chosen.size(); i++){
-			if (chosen.get(i).item_details.getID() == itemCode){
-				toOrder = chosen.get(i);
-				break; 
-			}
-		}
 
 		switch (option){
 			case 1:

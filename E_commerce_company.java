@@ -11,6 +11,10 @@ public class E_commerce_company implements StakeHolders{
 		stakeholder.showDetails(id);
 	}
 
+	public void contribute(float amount){
+		accountBalance += amount;
+	}
+
 	E_commerce_company(){
 		Merchant _jack = new Merchant("jack", "Jumbo Dealers, Sector 21, NOIDA, UP");
 		Merchant _john = new Merchant("john", "Keith and Sons, Sector 20, Dwarka, Delhi");
@@ -86,6 +90,7 @@ public class E_commerce_company implements StakeHolders{
 
 			case 4:
 				System.out.println("Account balance of the company is " + accountBalance);
+				showInitialMenuOptions();
 				break;
 
 			case 5:
